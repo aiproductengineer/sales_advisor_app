@@ -13,17 +13,15 @@ export const Layout: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden w-full">
       {/* Main Content */}
-      <div className="flex-1 overflow-x-hidden overflow-y-auto pb-20">
-        <div className="max-w-screen-xl mx-auto">
-          <Outlet />
-        </div>
+      <div className="flex-1 overflow-x-hidden overflow-y-auto pb-20 w-full">
+        <Outlet />
       </div>
 
       {/* Glass Bottom Navigation */}
       <nav className="glass-nav safe-area-bottom">
-        <div className="grid grid-cols-5 h-20 max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-5 h-20">
           <NavItem to="/" icon={<Home className="w-6 h-6" />} label="Home" />
           <NavItem to="/customers" icon={<Users className="w-6 h-6" />} label="Customers" />
           <NavItem to="/products" icon={<Package className="w-6 h-6" />} label="Products" />

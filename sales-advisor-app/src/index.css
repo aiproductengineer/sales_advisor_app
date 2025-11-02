@@ -3,17 +3,34 @@
 @tailwind utilities;
 
 @layer base {
+  /* CSS Reset for proper full-width layout */
+  * {
+    box-sizing: border-box;
+  }
+
   :root {
     --glass-background: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
   }
 
-  html, body {
+  html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
     @apply bg-dark-900 text-gray-100 antialiased;
     background: linear-gradient(135deg, #0a0a0f 0%, #1e1e2e 50%, #141420 100%);
     background-attachment: fixed;
     overflow-x: hidden;
-    max-width: 100vw;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
   }
 
   * {
@@ -23,7 +40,9 @@
   /* Prevent any element from causing horizontal scroll */
   #root {
     overflow-x: hidden;
-    max-width: 100vw;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
   }
 
   /* Glassmorphism background pattern */
@@ -189,23 +208,12 @@
 }
 
 /* Desktop optimizations */
-@media (min-width: 768px) {
-  /* Center app content on desktop */
+@media (min-width: 1280px) {
+  /* Center navigation on very large screens */
   .glass-nav {
     left: 50%;
+    right: auto;
     transform: translateX(-50%);
-    max-width: 1280px;
-    width: 100%;
-  }
-
-  /* Constrain page width on desktop */
-  body {
-    display: flex;
-    justify-content: center;
-  }
-
-  #root {
-    width: 100%;
     max-width: 1280px;
   }
 }
