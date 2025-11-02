@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Mail, Send } from 'lucide-react';
+import { MessageSquare, Mail, Send, Sparkles, Shield } from 'lucide-react';
 import { mockTemplates } from '../data/mockData';
 import { MessageTemplate, TemplateCategory } from '../types';
 
@@ -20,11 +20,20 @@ export const Communication: React.FC = () => {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="p-4 bg-white border-b border-gray-200">
-        <h1 className="text-xl font-display font-bold mb-3">Communication Templates</h1>
+      <div className="p-4">
+        <div className="card-premium p-5 mb-4 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-luxury-gold/10 rounded-full blur-3xl" />
+          <div className="relative z-10">
+            <h1 className="text-2xl font-display font-bold mb-1 text-white flex items-center gap-2">
+              <Sparkles className="w-6 h-6 text-luxury-gold" />
+              Communication Templates
+            </h1>
+            <p className="text-gray-400 text-sm">Pre-approved messages for luxury retail</p>
+          </div>
+        </div>
 
         {/* Category Filter */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           <FilterButton
             label="All"
             active={selectedCategory === 'all'}
@@ -52,7 +61,7 @@ export const Communication: React.FC = () => {
       {selectedTemplate ? (
         <TemplateDetail template={selectedTemplate} onBack={() => setSelectedTemplate(null)} />
       ) : (
-        <div className="flex-1 overflow-y-auto p-4 space-y-3">
+        <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-3">
           {filteredTemplates.map((template) => (
             <TemplateCard
               key={template.id}
@@ -75,10 +84,10 @@ interface FilterButtonProps {
 const FilterButton: React.FC<FilterButtonProps> = ({ label, active, onClick }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-colors ${
+    className={`px-4 py-2 rounded-xl font-medium text-sm whitespace-nowrap transition-all ${
       active
-        ? 'bg-primary-700 text-white'
-        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        ? 'btn-primary'
+        : 'btn-glass'
     }`}
   >
     {label}
@@ -94,53 +103,56 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template, onClick }) => {
   const getCategoryColor = () => {
     switch (template.category) {
       case 'occasion':
-        return 'bg-pink-100 text-pink-800';
+        return 'bg-pink-500/20 text-pink-300 border-pink-500/30';
       case 'followup':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
       case 'education':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
       case 'promotional':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-500/20 text-green-300 border-green-500/30';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
     }
   };
 
   const getChannelColor = () => {
     switch (template.channel) {
       case 'whatsapp':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-500/20 text-green-300 border-green-500/30';
       case 'email':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
       case 'sms':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-orange-500/20 text-orange-300 border-orange-500/30';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
     }
   };
 
   return (
     <div
       onClick={onClick}
-      className="card hover:shadow-md transition-shadow cursor-pointer"
+      className="glass-card-hover p-4 cursor-pointer relative overflow-hidden"
     >
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="font-semibold text-lg">{template.name}</h3>
-        <span className={`badge ${getChannelColor()} flex items-center gap-1`}>
-          {CHANNEL_ICONS[template.channel]}
-          {template.channel}
-        </span>
-      </div>
+      <div className="absolute top-0 right-0 w-32 h-32 bg-luxury-gold/5 rounded-full blur-2xl" />
+      <div className="relative z-10">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="font-semibold text-lg text-white">{template.name}</h3>
+          <span className={`badge ${getChannelColor()} flex items-center gap-1`}>
+            {CHANNEL_ICONS[template.channel]}
+            {template.channel}
+          </span>
+        </div>
 
-      <p className="text-sm text-gray-600 line-clamp-2 mb-3">{template.body}</p>
+        <p className="text-sm text-gray-300 line-clamp-2 mb-3">{template.body}</p>
 
-      <div className="flex items-center justify-between">
-        <span className={`badge ${getCategoryColor()}`}>
-          {template.category}
-        </span>
-        <span className="text-xs text-gray-500">
-          {template.variables.length} variables
-        </span>
+        <div className="flex items-center justify-between">
+          <span className={`badge ${getCategoryColor()}`}>
+            {template.category}
+          </span>
+          <span className="text-xs text-gray-500">
+            {template.variables.length} variables
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -173,44 +185,47 @@ const TemplateDetail: React.FC<TemplateDetailProps> = ({ template, onBack }) => 
   return (
     <div className="flex-1 overflow-y-auto">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary-700 to-primary-600 text-white p-6">
+      <div className="relative overflow-hidden p-6 m-4 glass-card">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-luxury-gold/10 rounded-full blur-3xl" />
         <button
           onClick={onBack}
-          className="mb-4 text-sm hover:underline"
+          className="mb-4 text-sm text-gray-400 hover:text-luxury-gold transition-colors"
         >
           ← Back to templates
         </button>
-        <h1 className="text-2xl font-display font-bold mb-2">{template.name}</h1>
-        <div className="flex gap-2">
-          <span className="badge bg-white/20 text-white">
-            {template.category}
-          </span>
-          <span className="badge bg-white/20 text-white flex items-center gap-1">
-            {CHANNEL_ICONS[template.channel]}
-            {template.channel}
-          </span>
+        <div className="relative z-10">
+          <h1 className="text-2xl font-display font-bold mb-2 text-white">{template.name}</h1>
+          <div className="flex gap-2">
+            <span className="badge bg-purple-500/20 text-purple-300 border-purple-500/30">
+              {template.category}
+            </span>
+            <span className="badge bg-blue-500/20 text-blue-300 border-blue-500/30 flex items-center gap-1">
+              {CHANNEL_ICONS[template.channel]}
+              {template.channel}
+            </span>
+          </div>
         </div>
       </div>
 
       <div className="p-4 space-y-4">
         {/* Subject (for email) */}
         {template.subject && (
-          <div className="card">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+          <div className="glass-card p-4">
+            <label className="block text-sm font-medium text-gray-400 mb-1">
               Subject
             </label>
-            <p className="text-gray-900">{template.subject}</p>
+            <p className="text-gray-200">{template.subject}</p>
           </div>
         )}
 
         {/* Variables */}
         {template.variables.length > 0 && (
-          <div className="card">
-            <h3 className="font-semibold mb-3">Variables</h3>
+          <div className="glass-card p-4">
+            <h3 className="font-semibold mb-3 text-white">Variables</h3>
             <div className="space-y-3">
               {template.variables.map((variable) => (
                 <div key={variable}>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-400 mb-1">
                     {variable}
                   </label>
                   <input
@@ -227,33 +242,36 @@ const TemplateDetail: React.FC<TemplateDetailProps> = ({ template, onBack }) => 
         )}
 
         {/* Preview */}
-        <div className="card bg-gray-50">
-          <h3 className="font-semibold mb-3">Preview</h3>
+        <div className="glass-card p-4">
+          <h3 className="font-semibold mb-3 text-white">Preview</h3>
           {template.subject && (
-            <div className="mb-3 pb-3 border-b border-gray-200">
-              <p className="text-xs text-gray-600 mb-1">Subject:</p>
-              <p className="font-medium">{template.subject}</p>
+            <div className="mb-3 pb-3 border-b border-white/10">
+              <p className="text-xs text-gray-500 mb-1">Subject:</p>
+              <p className="font-medium text-gray-300">{template.subject}</p>
             </div>
           )}
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
-            <p className="text-sm whitespace-pre-wrap text-gray-800">
+          <div className="bg-white/5 p-4 rounded-lg border border-white/10 backdrop-blur-xl">
+            <p className="text-sm whitespace-pre-wrap text-gray-200">
               {getPreviewBody()}
             </p>
           </div>
         </div>
 
         {/* Template Body */}
-        <div className="card">
-          <h3 className="font-semibold mb-2">Original Template</h3>
-          <p className="text-sm text-gray-600 font-mono bg-gray-50 p-3 rounded whitespace-pre-wrap">
+        <div className="glass-card p-4">
+          <h3 className="font-semibold mb-2 text-white">Original Template</h3>
+          <p className="text-sm text-gray-400 font-mono bg-white/5 p-3 rounded whitespace-pre-wrap">
             {template.body}
           </p>
         </div>
 
         {/* Compliance Notice */}
-        <div className="card bg-blue-50 border-blue-200">
-          <h3 className="font-semibold text-blue-900 mb-2">Compliance Notice</h3>
-          <ul className="text-sm text-blue-800 space-y-1">
+        <div className="glass-card p-4 bg-gradient-to-br from-blue-500/10 to-transparent border-blue-500/30">
+          <h3 className="font-semibold text-blue-300 mb-2 flex items-center gap-2">
+            <Shield className="w-5 h-5" />
+            Compliance Notice
+          </h3>
+          <ul className="text-sm text-blue-200 space-y-1">
             <li>• Customer consent will be verified before sending</li>
             <li>• DND list will be checked automatically</li>
             <li>• Messages will not be sent during quiet hours (9 PM - 9 AM)</li>
@@ -264,10 +282,13 @@ const TemplateDetail: React.FC<TemplateDetailProps> = ({ template, onBack }) => 
         {/* Send Button */}
         <button
           onClick={handleSend}
-          className="w-full btn-primary flex items-center justify-center gap-2 py-3"
+          className="w-full btn-primary flex items-center justify-center gap-2 py-4 text-lg relative overflow-hidden group"
         >
-          <Send className="w-5 h-5" />
-          Use Template
+          <span className="relative z-10 flex items-center gap-2">
+            <Send className="w-5 h-5" />
+            Use Template
+          </span>
+          <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100" />
         </button>
       </div>
     </div>
