@@ -37,33 +37,33 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated Background Orbs */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-luxury-gold/20 rounded-full blur-3xl animate-float pointer-events-none" style={{ willChange: 'transform' }} />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: '1s', willChange: 'transform' }} />
+    <div className="min-h-screen w-full flex items-center justify-center px-4 py-8 sm:p-6 relative overflow-hidden">
+      {/* Animated Background Orbs - Hidden on mobile for better performance */}
+      <div className="hidden sm:block absolute top-10 left-10 lg:top-20 lg:left-20 w-48 h-48 sm:w-72 sm:h-72 bg-luxury-gold/20 rounded-full blur-3xl animate-float pointer-events-none" style={{ willChange: 'transform' }} />
+      <div className="hidden sm:block absolute bottom-10 right-10 lg:bottom-20 lg:right-20 w-64 h-64 sm:w-96 sm:h-96 bg-purple-500/20 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: '1s', willChange: 'transform' }} />
 
-      <div className="w-full max-w-md relative z-10">
+      <div className="w-full max-w-md mx-auto relative z-10">
         {/* Logo Section */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 sm:mb-8">
           <div className="inline-block relative group">
             <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold to-luxury-darkGold rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
-            <div className="relative glass-card p-6 rounded-full">
-              <Lock className="w-16 h-16 text-luxury-gold" />
+            <div className="relative glass-card p-4 sm:p-6 rounded-full">
+              <Lock className="w-12 h-12 sm:w-16 sm:h-16 text-luxury-gold" />
             </div>
           </div>
-          <h1 className="text-4xl font-display font-bold mt-6 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-display font-bold mt-4 sm:mt-6 mb-2">
             <span className="text-gradient-gold text-glow">Ethos</span>
           </h1>
-          <p className="text-xl text-gray-400 font-light">Sales Advisor</p>
+          <p className="text-lg sm:text-xl text-gray-400 font-light">Sales Advisor</p>
           <div className="flex items-center justify-center gap-2 mt-2 text-luxury-gold/70">
             <Sparkles className="w-4 h-4" />
-            <span className="text-sm">Luxury Retail Excellence</span>
+            <span className="text-xs sm:text-sm">Luxury Retail Excellence</span>
             <Sparkles className="w-4 h-4" />
           </div>
         </div>
 
         {/* Login Card */}
-        <div className="glass-card p-8 relative overflow-hidden">
+        <div className="glass-card p-6 sm:p-8 relative overflow-hidden">
           {/* Top accent line */}
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luxury-gold to-transparent" />
 

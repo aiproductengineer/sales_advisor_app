@@ -15,18 +15,18 @@ export const Layout: React.FC = () => {
   return (
     <div className="h-screen flex flex-col overflow-hidden w-full">
       {/* Main Content */}
-      <div className="flex-1 overflow-x-hidden overflow-y-auto pb-20 w-full">
+      <div className="flex-1 overflow-x-hidden overflow-y-auto pb-24 w-full">
         <Outlet />
       </div>
 
       {/* Glass Bottom Navigation */}
-      <nav className="glass-nav safe-area-bottom">
-        <div className="grid grid-cols-5 h-20">
-          <NavItem to="/" icon={<Home className="w-6 h-6" />} label="Home" />
-          <NavItem to="/customers" icon={<Users className="w-6 h-6" />} label="Customers" />
-          <NavItem to="/products" icon={<Package className="w-6 h-6" />} label="Products" />
-          <NavItem to="/tasks" icon={<CheckSquare className="w-6 h-6" />} label="Tasks" />
-          <NavItem to="/communication" icon={<MessageSquare className="w-6 h-6" />} label="Messages" />
+      <nav className="glass-nav safe-area-bottom w-full">
+        <div className="grid grid-cols-5 h-20 w-full max-w-7xl mx-auto px-2 sm:px-4">
+          <NavItem to="/" icon={<Home className="w-5 h-5 sm:w-6 sm:h-6" />} label="Home" />
+          <NavItem to="/customers" icon={<Users className="w-5 h-5 sm:w-6 sm:h-6" />} label="Customers" />
+          <NavItem to="/products" icon={<Package className="w-5 h-5 sm:w-6 sm:h-6" />} label="Products" />
+          <NavItem to="/tasks" icon={<CheckSquare className="w-5 h-5 sm:w-6 sm:h-6" />} label="Tasks" />
+          <NavItem to="/communication" icon={<MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />} label="Messages" />
         </div>
       </nav>
 
@@ -54,7 +54,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
       to={to}
       end={to === '/'}
       className={({ isActive }) =>
-        `flex flex-col items-center justify-center gap-1.5 transition-all relative group ${
+        `flex flex-col items-center justify-center gap-1 sm:gap-1.5 transition-all relative group px-1 ${
           isActive
             ? 'text-luxury-gold'
             : 'text-gray-400 hover:text-gray-200'
@@ -65,7 +65,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
         <>
           {/* Active indicator */}
           {isActive && (
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-transparent via-luxury-gold to-transparent rounded-full" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 sm:w-12 h-1 bg-gradient-to-r from-transparent via-luxury-gold to-transparent rounded-full" />
           )}
 
           {/* Icon with glow effect when active */}
@@ -77,7 +77,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
           </div>
 
           {/* Label */}
-          <span className={`text-xs font-medium ${isActive ? 'font-semibold' : ''}`}>
+          <span className={`text-[10px] sm:text-xs font-medium ${isActive ? 'font-semibold' : ''} truncate max-w-full`}>
             {label}
           </span>
         </>

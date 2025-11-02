@@ -150,7 +150,12 @@
 
   /* Glass Navigation */
   .glass-nav {
-    @apply fixed bottom-0 left-0 right-0 bg-dark-800/80 backdrop-blur-2xl border-t border-white/10;
+    @apply fixed bottom-0 left-0 right-0 w-full bg-dark-800/80 backdrop-blur-2xl border-t border-white/10 z-50;
+  }
+
+  /* Safe area for mobile devices with notches */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   /* Shimmer Effect */
@@ -209,12 +214,11 @@
 
 /* Desktop optimizations */
 @media (min-width: 1280px) {
-  /* Center navigation on very large screens */
+  /* Navigation stays full width on desktop, content is centered via max-w-7xl */
   .glass-nav {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    max-width: 1280px;
+    left: 0;
+    right: 0;
+    width: 100%;
   }
 }
 

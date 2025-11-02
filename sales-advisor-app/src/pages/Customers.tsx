@@ -15,18 +15,18 @@ export const Customers: React.FC = () => {
   const filteredCustomers = searchQuery ? searchCustomers(searchQuery) : customers;
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col max-w-7xl mx-auto w-full">
       {/* Search Bar */}
-      <div className="p-4">
-        <div className="glass-card p-4">
+      <div className="p-3 sm:p-4">
+        <div className="glass-card p-3 sm:p-4">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
             <input
               type="text"
-              placeholder="Search by name, phone, or email..."
+              placeholder="Search customers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="input pl-12"
+              className="input pl-10 sm:pl-12 text-sm sm:text-base"
             />
           </div>
         </div>
@@ -36,7 +36,7 @@ export const Customers: React.FC = () => {
       {selectedCustomer ? (
         <CustomerDetail customer={selectedCustomer} onClose={clearSelectedCustomer} />
       ) : (
-        <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-3">
+        <div className="flex-1 overflow-y-auto px-3 sm:px-4 pb-4 space-y-2 sm:space-y-3">
           {filteredCustomers.length === 0 ? (
             <div className="text-center py-12 glass-card">
               <Search className="w-12 h-12 text-gray-600 mx-auto mb-3" />
@@ -66,16 +66,17 @@ const CustomerCard: React.FC<CustomerCardProps> = ({ customer, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="glass-card-hover p-4 cursor-pointer relative overflow-hidden border-l-2 border-l-luxury-gold"
+      className="glass-card-hover p-3 sm:p-4 cursor-pointer relative overflow-hidden border-l-2 border-l-luxury-gold"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-luxury-gold/5 rounded-full blur-2xl" />
+      <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-luxury-gold/5 rounded-full blur-2xl" />
       <div className="relative z-10">
-        <div className="flex justify-between items-start mb-3">
-          <div>
-            <h3 className="font-semibold text-lg text-white">{customer.name}</h3>
-            <p className="text-sm text-gray-400">{formatPhone(customer.phone)}</p>
+        <div className="flex justify-between items-start mb-2 sm:mb-3">
+          <div className="min-w-0 flex-1 pr-2">
+            <h3 className="font-semibold text-base sm:text-lg text-white truncate">{customer.name}</h3>
+            <p className="text-xs sm:text-sm text-gray-400">{formatPhone(customer.phone)}</p>
           </div>
-          <span className={`badge ${getLoyaltyTierColor(customer.loyaltyTier)}`}>
+          <span className={`badge text-[10px] sm:text-xs flex-shrink-0 ${getLoyaltyTierColor(customer.loyaltyTier)} flex items-center gap-1`}>
+            {customer.loyaltyTier === 'Platinum' && <Crown className="w-3 h-3" />}
             {customer.loyaltyTier}
           </span>
         </div>

@@ -15,18 +15,18 @@ export const Products: React.FC = () => {
   const filteredProducts = searchQuery ? searchProducts(searchQuery) : products;
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col max-w-7xl mx-auto w-full">
       {/* Search Bar */}
-      <div className="p-4">
-        <div className="glass-card p-4">
+      <div className="p-3 sm:p-4">
+        <div className="glass-card p-3 sm:p-4">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
             <input
               type="text"
-              placeholder="Search by brand, model, or SKU..."
+              placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="input pl-12"
+              className="input pl-10 sm:pl-12 text-sm sm:text-base"
             />
           </div>
         </div>
@@ -36,7 +36,7 @@ export const Products: React.FC = () => {
       {selectedProduct ? (
         <ProductDetail product={selectedProduct} onClose={clearSelectedProduct} />
       ) : (
-        <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-3">
+        <div className="flex-1 overflow-y-auto px-3 sm:px-4 pb-4 space-y-2 sm:space-y-3">
           {filteredProducts.length === 0 ? (
             <div className="text-center py-12 glass-card">
               <Package className="w-12 h-12 text-gray-600 mx-auto mb-3" />

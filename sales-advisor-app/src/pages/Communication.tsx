@@ -18,9 +18,9 @@ export const Communication: React.FC = () => {
     : mockTemplates.filter((t) => t.category === selectedCategory);
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col max-w-7xl mx-auto w-full">
       {/* Header */}
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         <div className="card-premium p-5 mb-4 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-luxury-gold/10 rounded-full blur-3xl" />
           <div className="relative z-10">

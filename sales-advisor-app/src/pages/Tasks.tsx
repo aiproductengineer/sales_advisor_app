@@ -20,7 +20,7 @@ export const Tasks: React.FC = () => {
   });
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-3 sm:p-4 space-y-3 sm:space-y-4 max-w-7xl mx-auto w-full">
       {/* Header */}
       <div className="card-premium p-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-48 h-48 bg-luxury-gold/10 rounded-full blur-3xl" />

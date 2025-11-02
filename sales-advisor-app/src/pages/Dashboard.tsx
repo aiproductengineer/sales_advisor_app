@@ -20,9 +20,9 @@ export const Dashboard: React.FC = () => {
     : 'from-red-500 to-rose-600';
 
   return (
-    <div className="space-y-6 p-4">
+    <div className="space-y-4 sm:space-y-6 p-4 max-w-7xl mx-auto">
       {/* Welcome Section */}
-      <div className="card-premium p-6 relative overflow-hidden">
+      <div className="card-premium p-4 sm:p-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-luxury-gold/20 to-transparent rounded-full blur-3xl" />
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
@@ -96,62 +96,62 @@ export const Dashboard: React.FC = () => {
       </div>
 
       {/* Quick Stats Grid */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="glass-card p-4 relative overflow-hidden group hover:scale-105 transition-transform">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        <div className="glass-card p-3 sm:p-4 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-blue-500/10 rounded-full blur-2xl" />
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-blue-500/20 rounded-lg">
-                <Users className="w-5 h-5 text-blue-400" />
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
+              <div className="p-1.5 sm:p-2 bg-blue-500/20 rounded-lg">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
               </div>
-              <p className="text-xs text-gray-400">MTD Transactions</p>
+              <p className="text-[10px] sm:text-xs text-gray-400">MTD Transactions</p>
             </div>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl font-bold text-white">
               {currentAdvisor.performance.mtdTransactions}
             </p>
           </div>
         </div>
 
-        <div className="glass-card p-4 relative overflow-hidden group hover:scale-105 transition-transform">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/10 rounded-full blur-2xl" />
+        <div className="glass-card p-3 sm:p-4 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-green-500/10 rounded-full blur-2xl" />
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-green-500/20 rounded-lg">
-                <TrendingUp className="w-5 h-5 text-green-400" />
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
+              <div className="p-1.5 sm:p-2 bg-green-500/20 rounded-lg">
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
               </div>
-              <p className="text-xs text-gray-400">Conversion Rate</p>
+              <p className="text-[10px] sm:text-xs text-gray-400">Conversion Rate</p>
             </div>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl font-bold text-white">
               {currentAdvisor.performance.conversionRate}%
             </p>
           </div>
         </div>
 
-        <div className="glass-card p-4 relative overflow-hidden group hover:scale-105 transition-transform">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl" />
+        <div className="glass-card p-3 sm:p-4 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-purple-500/10 rounded-full blur-2xl" />
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-purple-500/20 rounded-lg">
-                <Star className="w-5 h-5 text-purple-400" />
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
+              <div className="p-1.5 sm:p-2 bg-purple-500/20 rounded-lg">
+                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
               </div>
-              <p className="text-xs text-gray-400">NPS Score</p>
+              <p className="text-[10px] sm:text-xs text-gray-400">NPS Score</p>
             </div>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl font-bold text-white">
               {currentAdvisor.performance.npsScore}
             </p>
           </div>
         </div>
 
-        <div className="glass-card p-4 relative overflow-hidden group hover:scale-105 transition-transform">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl" />
+        <div className="glass-card p-3 sm:p-4 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 bg-amber-500/10 rounded-full blur-2xl" />
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-amber-500/20 rounded-lg">
-                <Award className="w-5 h-5 text-amber-400" />
+            <div className="flex items-center gap-2 mb-2 sm:mb-3">
+              <div className="p-1.5 sm:p-2 bg-amber-500/20 rounded-lg">
+                <Award className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
               </div>
-              <p className="text-xs text-gray-400">Mystery Audit</p>
+              <p className="text-[10px] sm:text-xs text-gray-400">Mystery Audit</p>
             </div>
-            <p className="text-3xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl font-bold text-white">
               {currentAdvisor.performance.mysteryAuditScore}
             </p>
           </div>
