@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Mail, Send, Filter } from 'lucide-react';
+import { MessageSquare, Mail, Send } from 'lucide-react';
 import { mockTemplates } from '../data/mockData';
 import { MessageTemplate, TemplateCategory } from '../types';
 
