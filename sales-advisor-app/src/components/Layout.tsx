@@ -13,15 +13,15 @@ export const Layout: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
+    <div className="h-screen flex flex-col">
       {/* Main Content */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-auto pb-20">
         <Outlet />
       </div>
 
-      {/* Bottom Navigation */}
-      <nav className="bg-white border-t border-gray-200 safe-area-bottom">
-        <div className="grid grid-cols-5 h-16">
+      {/* Glass Bottom Navigation */}
+      <nav className="glass-nav safe-area-bottom">
+        <div className="grid grid-cols-5 h-20 max-w-screen-xl mx-auto">
           <NavItem to="/" icon={<Home className="w-6 h-6" />} label="Home" />
           <NavItem to="/customers" icon={<Users className="w-6 h-6" />} label="Customers" />
           <NavItem to="/products" icon={<Package className="w-6 h-6" />} label="Products" />
@@ -30,13 +30,13 @@ export const Layout: React.FC = () => {
         </div>
       </nav>
 
-      {/* Logout Button (Floating) */}
+      {/* Floating Logout Button */}
       <button
         onClick={handleLogout}
-        className="fixed top-4 right-4 p-2 bg-white rounded-lg shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors z-50"
+        className="fixed top-4 right-4 glass-card p-3 hover:bg-white/10 transition-all z-50 group"
         title="Logout"
       >
-        <LogOut className="w-5 h-5 text-gray-600" />
+        <LogOut className="w-5 h-5 text-gray-400 group-hover:text-luxury-gold transition-colors" />
       </button>
     </div>
   );
@@ -52,16 +52,36 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
   return (
     <NavLink
       to={to}
+      end={to === '/'}
       className={({ isActive }) =>
-        `flex flex-col items-center justify-center gap-1 transition-colors ${
+        `flex flex-col items-center justify-center gap-1.5 transition-all relative group ${
           isActive
-            ? 'text-primary-700 bg-primary-50'
-            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+            ? 'text-luxury-gold'
+            : 'text-gray-400 hover:text-gray-200'
         }`
       }
     >
-      {icon}
-      <span className="text-xs font-medium">{label}</span>
+      {({ isActive }) => (
+        <>
+          {/* Active indicator */}
+          {isActive && (
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-transparent via-luxury-gold to-transparent rounded-full" />
+          )}
+
+          {/* Icon with glow effect when active */}
+          <div className={`relative ${isActive ? 'animate-float' : ''}`}>
+            {isActive && (
+              <div className="absolute inset-0 bg-luxury-gold/30 blur-xl rounded-full" />
+            )}
+            <div className="relative">{icon}</div>
+          </div>
+
+          {/* Label */}
+          <span className={`text-xs font-medium ${isActive ? 'font-semibold' : ''}`}>
+            {label}
+          </span>
+        </>
+      )}
     </NavLink>
   );
 };

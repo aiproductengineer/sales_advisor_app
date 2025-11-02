@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lock, Eye, EyeOff } from 'lucide-react';
+import { Lock, Eye, EyeOff, Sparkles } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 export const Login: React.FC = () => {
@@ -29,7 +29,6 @@ export const Login: React.FC = () => {
   };
 
   const handlePinInput = (value: string) => {
-    // Only allow numbers
     const numericValue = value.replace(/\D/g, '');
     if (numericValue.length <= 6) {
       setPin(numericValue);
@@ -38,25 +37,40 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Animated Background Orbs */}
+      <div className="absolute top-20 left-20 w-72 h-72 bg-luxury-gold/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+
+      <div className="w-full max-w-md relative z-10">
+        {/* Logo Section */}
         <div className="text-center mb-8">
-          <div className="inline-block p-4 bg-white/10 rounded-full mb-4 backdrop-blur-sm">
-            <Lock className="w-12 h-12 text-white" />
+          <div className="inline-block relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold to-luxury-darkGold rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+            <div className="relative glass-card p-6 rounded-full">
+              <Lock className="w-16 h-16 text-luxury-gold" />
+            </div>
           </div>
-          <h1 className="text-3xl font-display font-bold text-white mb-2">
-            Ethos Sales Advisor
+          <h1 className="text-4xl font-display font-bold mt-6 mb-2">
+            <span className="text-gradient-gold text-glow">Ethos</span>
           </h1>
-          <p className="text-primary-100">
-            Enter your PIN to continue
-          </p>
+          <p className="text-xl text-gray-400 font-light">Sales Advisor</p>
+          <div className="flex items-center justify-center gap-2 mt-2 text-luxury-gold/70">
+            <Sparkles className="w-4 h-4" />
+            <span className="text-sm">Luxury Retail Excellence</span>
+            <Sparkles className="w-4 h-4" />
+          </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        {/* Login Card */}
+        <div className="glass-card p-8 relative overflow-hidden">
+          {/* Top accent line */}
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luxury-gold to-transparent" />
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="pin" className="block text-sm font-medium text-gray-700 mb-2">
-                6-Digit PIN
+              <label htmlFor="pin" className="block text-sm font-medium text-gray-300 mb-3">
+                Enter 6-Digit PIN
               </label>
               <div className="relative">
                 <input
@@ -64,7 +78,7 @@ export const Login: React.FC = () => {
                   type={showPin ? 'text' : 'password'}
                   value={pin}
                   onChange={(e) => handlePinInput(e.target.value)}
-                  className="input pr-12 text-center text-2xl tracking-widest"
+                  className="input pr-12 text-center text-2xl tracking-[0.5em] font-light"
                   placeholder="••••••"
                   autoFocus
                   maxLength={6}
@@ -72,36 +86,42 @@ export const Login: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPin(!showPin)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-luxury-gold transition-colors"
                 >
                   {showPin ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
               {error && (
-                <p className="mt-2 text-sm text-red-600">{error}</p>
+                <div className="mt-3 p-3 rounded-lg bg-red-500/10 border border-red-500/30 backdrop-blur-xl">
+                  <p className="text-sm text-red-300">{error}</p>
+                </div>
               )}
             </div>
 
             <button
               type="submit"
               disabled={pin.length !== 6}
-              className="w-full bg-primary-700 hover:bg-primary-800 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none py-4 text-lg font-semibold relative overflow-hidden group"
             >
-              Unlock
+              <span className="relative z-10">Unlock</span>
+              <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100" />
             </button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
-              Demo PIN: <span className="font-mono font-semibold">123456</span>
-            </p>
-            <p className="text-xs text-gray-400 text-center mt-2">
-              Protected by biometric authentication in production
-            </p>
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="text-center space-y-2">
+              <p className="text-xs text-gray-500">
+                Demo PIN: <span className="font-mono font-semibold text-luxury-gold">123456</span>
+              </p>
+              <div className="flex items-center justify-center gap-2 text-xs text-gray-600">
+                <Lock className="w-3 h-3" />
+                <span>Biometric authentication in production</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <p className="text-center text-primary-100 text-sm mt-6">
+        <p className="text-center text-gray-500 text-sm mt-6">
           Need help? Contact your store manager
         </p>
       </div>
