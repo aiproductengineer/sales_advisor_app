@@ -37,10 +37,10 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden max-w-full">
       {/* Animated Background Orbs */}
-      <div className="absolute top-20 left-20 w-72 h-72 bg-luxury-gold/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-20 left-1/4 -translate-x-1/2 w-72 h-72 bg-luxury-gold/20 rounded-full blur-3xl animate-float pointer-events-none" />
+      <div className="absolute bottom-20 right-1/4 translate-x-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: '1s' }} />
 
       <div className="w-full max-w-md relative z-10">
         {/* Logo Section */}

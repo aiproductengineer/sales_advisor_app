@@ -13,10 +13,12 @@ export const Layout: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* Main Content */}
-      <div className="flex-1 overflow-auto pb-20">
-        <Outlet />
+      <div className="flex-1 overflow-x-hidden overflow-y-auto pb-20">
+        <div className="max-w-screen-xl mx-auto">
+          <Outlet />
+        </div>
       </div>
 
       {/* Glass Bottom Navigation */}
