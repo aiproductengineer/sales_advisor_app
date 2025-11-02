@@ -1,0 +1,490 @@
+import { Customer, Product, MessageTemplate, Advisor, TodoItem, Quote, Reservation } from '../types';
+
+export const currentAdvisor: Advisor = {
+  id: 'adv-001',
+  employeeId: 'EMP12345',
+  name: 'Rajesh Kumar',
+  email: 'rajesh.kumar@ethos.com',
+  phone: '+91 98765 43210',
+  storeId: 'store-mumbai-01',
+  storeName: 'Ethos Mumbai - Bandra',
+  targets: {
+    monthly: 5000000,
+    quarterly: 15000000,
+  },
+  performance: {
+    mtdSales: 3250000,
+    mtdTransactions: 28,
+    conversionRate: 32.5,
+    npsScore: 78,
+    mysteryAuditScore: 87,
+  },
+  active: true,
+};
+
+export const mockCustomers: Customer[] = [
+  {
+    id: 'cust-001',
+    name: 'Arjun Mehta',
+    email: 'arjun.mehta@email.com',
+    phone: '+91 98765 11111',
+    ltv: 2850000,
+    loyaltyTier: 'Platinum',
+    preferences: {
+      brands: ['Rolex', 'Omega', 'Cartier'],
+      categories: ['Luxury Watches', 'Jewelry'],
+      priceRange: { min: 500000, max: 5000000 },
+    },
+    keyDates: {
+      birthday: '1985-03-15',
+      anniversary: '2010-12-20',
+    },
+    consent: {
+      email: true,
+      sms: true,
+      whatsapp: true,
+      updatedAt: '2024-01-15T10:30:00Z',
+    },
+    dndStatus: false,
+    lastPurchase: {
+      date: '2024-10-05T14:30:00Z',
+      amount: 450000,
+      products: ['Rolex Submariner'],
+    },
+    purchaseHistory: [
+      {
+        date: '2024-10-05T14:30:00Z',
+        sku: 'ROL-SUB-001',
+        productName: 'Rolex Submariner',
+        amount: 450000,
+        advisorId: 'adv-001',
+      },
+      {
+        date: '2023-12-20T11:00:00Z',
+        sku: 'OME-SEA-001',
+        productName: 'Omega Seamaster',
+        amount: 380000,
+        advisorId: 'adv-001',
+      },
+    ],
+    assignedAdvisorId: 'adv-001',
+    createdAt: '2022-01-10T09:00:00Z',
+    updatedAt: '2024-10-05T14:30:00Z',
+  },
+  {
+    id: 'cust-002',
+    name: 'Priya Sharma',
+    email: 'priya.sharma@email.com',
+    phone: '+91 98765 22222',
+    ltv: 1250000,
+    loyaltyTier: 'Gold',
+    preferences: {
+      brands: ['TAG Heuer', 'Longines', 'Rado'],
+      categories: ['Sport Watches', 'Fashion Watches'],
+      priceRange: { min: 100000, max: 500000 },
+    },
+    keyDates: {
+      birthday: '1992-07-22',
+    },
+    consent: {
+      email: true,
+      sms: true,
+      whatsapp: false,
+      updatedAt: '2024-02-10T08:00:00Z',
+    },
+    dndStatus: false,
+    lastPurchase: {
+      date: '2024-09-12T16:45:00Z',
+      amount: 185000,
+      products: ['TAG Heuer Carrera'],
+    },
+    purchaseHistory: [
+      {
+        date: '2024-09-12T16:45:00Z',
+        sku: 'TAG-CAR-001',
+        productName: 'TAG Heuer Carrera',
+        amount: 185000,
+        advisorId: 'adv-001',
+      },
+    ],
+    assignedAdvisorId: 'adv-001',
+    createdAt: '2023-05-15T10:00:00Z',
+    updatedAt: '2024-09-12T16:45:00Z',
+  },
+  {
+    id: 'cust-003',
+    name: 'Vikram Singh',
+    email: 'vikram.singh@email.com',
+    phone: '+91 98765 33333',
+    ltv: 3500000,
+    loyaltyTier: 'Platinum',
+    preferences: {
+      brands: ['Patek Philippe', 'Audemars Piguet', 'Vacheron Constantin'],
+      categories: ['Haute Horlogerie', 'Complications'],
+      priceRange: { min: 1000000, max: 10000000 },
+    },
+    keyDates: {
+      birthday: '1978-11-08',
+      anniversary: '2005-02-14',
+    },
+    consent: {
+      email: true,
+      sms: true,
+      whatsapp: true,
+      updatedAt: '2023-11-20T12:00:00Z',
+    },
+    dndStatus: false,
+    lastPurchase: {
+      date: '2024-08-20T13:00:00Z',
+      amount: 1850000,
+      products: ['Patek Philippe Nautilus'],
+    },
+    purchaseHistory: [
+      {
+        date: '2024-08-20T13:00:00Z',
+        sku: 'PAT-NAU-001',
+        productName: 'Patek Philippe Nautilus',
+        amount: 1850000,
+        advisorId: 'adv-001',
+      },
+    ],
+    assignedAdvisorId: 'adv-001',
+    createdAt: '2021-03-01T09:00:00Z',
+    updatedAt: '2024-08-20T13:00:00Z',
+  },
+  {
+    id: 'cust-004',
+    name: 'Ananya Desai',
+    email: 'ananya.desai@email.com',
+    phone: '+91 98765 44444',
+    ltv: 850000,
+    loyaltyTier: 'Silver',
+    preferences: {
+      brands: ['Tissot', 'Hamilton', 'Seiko'],
+      categories: ['Classic Watches', 'Ladies Watches'],
+      priceRange: { min: 50000, max: 300000 },
+    },
+    keyDates: {
+      birthday: '1995-05-30',
+    },
+    consent: {
+      email: true,
+      sms: false,
+      whatsapp: true,
+      updatedAt: '2024-03-05T14:00:00Z',
+    },
+    dndStatus: false,
+    lastPurchase: {
+      date: '2024-07-15T10:30:00Z',
+      amount: 95000,
+      products: ['Tissot PRX'],
+    },
+    purchaseHistory: [
+      {
+        date: '2024-07-15T10:30:00Z',
+        sku: 'TIS-PRX-001',
+        productName: 'Tissot PRX',
+        amount: 95000,
+        advisorId: 'adv-001',
+      },
+    ],
+    assignedAdvisorId: 'adv-001',
+    createdAt: '2023-08-10T11:00:00Z',
+    updatedAt: '2024-07-15T10:30:00Z',
+  },
+];
+
+export const mockProducts: Product[] = [
+  {
+    sku: 'ROL-DAY-001',
+    name: 'Rolex Day-Date 40',
+    brand: 'Rolex',
+    category: 'Luxury Watches',
+    model: 'Day-Date 40',
+    description: 'The Rolex Day-Date 40 in 18 ct yellow gold with a champagne-colour dial, fluted bezel and a President bracelet.',
+    price: 2850000,
+    images: [
+      'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800',
+    ],
+    specifications: {
+      caseMaterial: '18 ct yellow gold',
+      movement: 'Perpetual, mechanical, self-winding',
+      waterResistance: '100 metres / 330 feet',
+      diameter: '40 mm',
+    },
+    stock: [
+      { storeId: 'store-mumbai-01', storeName: 'Mumbai - Bandra', quantity: 2, reserved: 0 },
+      { storeId: 'store-delhi-01', storeName: 'Delhi - Connaught Place', quantity: 1, reserved: 0, distance: 1400 },
+      { storeId: 'store-bangalore-01', storeName: 'Bangalore - Indiranagar', quantity: 0, reserved: 0, distance: 980 },
+    ],
+    velocity: 'medium',
+  },
+  {
+    sku: 'OME-SPE-001',
+    name: 'Omega Speedmaster Moonwatch',
+    brand: 'Omega',
+    category: 'Sport Watches',
+    model: 'Speedmaster Professional',
+    description: 'The legendary Moonwatch. The first watch worn on the Moon during the Apollo 11 mission in 1969.',
+    price: 485000,
+    images: [
+      'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=800',
+    ],
+    specifications: {
+      caseMaterial: 'Stainless steel',
+      movement: 'Calibre 1861, manual-winding',
+      waterResistance: '50 metres',
+      diameter: '42 mm',
+    },
+    stock: [
+      { storeId: 'store-mumbai-01', storeName: 'Mumbai - Bandra', quantity: 3, reserved: 1 },
+      { storeId: 'store-delhi-01', storeName: 'Delhi - Connaught Place', quantity: 2, reserved: 0, distance: 1400 },
+      { storeId: 'store-bangalore-01', storeName: 'Bangalore - Indiranagar', quantity: 1, reserved: 0, distance: 980 },
+    ],
+    velocity: 'fast',
+  },
+  {
+    sku: 'TAG-CAR-002',
+    name: 'TAG Heuer Carrera Chronograph',
+    brand: 'TAG Heuer',
+    category: 'Sport Watches',
+    model: 'Carrera',
+    description: 'Inspired by the adrenaline and rush of motorsports, the TAG Heuer Carrera collection epitomizes speed and sophistication.',
+    price: 425000,
+    images: [
+      'https://images.unsplash.com/photo-1609587312208-cea54be969e7?w=800',
+    ],
+    specifications: {
+      caseMaterial: 'Stainless steel',
+      movement: 'Calibre Heuer 02, automatic',
+      waterResistance: '100 metres',
+      diameter: '44 mm',
+    },
+    stock: [
+      { storeId: 'store-mumbai-01', storeName: 'Mumbai - Bandra', quantity: 5, reserved: 0 },
+      { storeId: 'store-delhi-01', storeName: 'Delhi - Connaught Place', quantity: 3, reserved: 1, distance: 1400 },
+      { storeId: 'store-bangalore-01', storeName: 'Bangalore - Indiranagar', quantity: 2, reserved: 0, distance: 980 },
+    ],
+    velocity: 'fast',
+  },
+  {
+    sku: 'CAR-SAN-001',
+    name: 'Cartier Santos de Cartier',
+    brand: 'Cartier',
+    category: 'Luxury Watches',
+    model: 'Santos',
+    description: 'A watch with a strong identity. First mens wristwatch created by Louis Cartier in 1904.',
+    price: 685000,
+    images: [
+      'https://images.unsplash.com/photo-1594534475180-7d5ab2d2d5b5?w=800',
+    ],
+    specifications: {
+      caseMaterial: 'Steel and 18K yellow gold',
+      movement: 'Calibre 1847 MC, automatic',
+      waterResistance: '100 metres',
+      diameter: '39.8 mm',
+    },
+    stock: [
+      { storeId: 'store-mumbai-01', storeName: 'Mumbai - Bandra', quantity: 1, reserved: 0 },
+      { storeId: 'store-delhi-01', storeName: 'Delhi - Connaught Place', quantity: 2, reserved: 0, distance: 1400 },
+      { storeId: 'store-bangalore-01', storeName: 'Bangalore - Indiranagar', quantity: 1, reserved: 1, distance: 980 },
+    ],
+    velocity: 'medium',
+  },
+  {
+    sku: 'TIS-PRX-002',
+    name: 'Tissot PRX Powermatic 80',
+    brand: 'Tissot',
+    category: 'Classic Watches',
+    model: 'PRX',
+    description: 'Retro-futuristic design with an 80-hour power reserve. Perfect blend of vintage style and modern technology.',
+    price: 98000,
+    images: [
+      'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800',
+    ],
+    specifications: {
+      caseMaterial: 'Stainless steel',
+      movement: 'Powermatic 80, automatic',
+      waterResistance: '100 metres',
+      diameter: '40 mm',
+    },
+    stock: [
+      { storeId: 'store-mumbai-01', storeName: 'Mumbai - Bandra', quantity: 8, reserved: 0 },
+      { storeId: 'store-delhi-01', storeName: 'Delhi - Connaught Place', quantity: 5, reserved: 0, distance: 1400 },
+      { storeId: 'store-bangalore-01', storeName: 'Bangalore - Indiranagar', quantity: 6, reserved: 1, distance: 980 },
+    ],
+    velocity: 'fast',
+  },
+  {
+    sku: 'PAT-CAL-001',
+    name: 'Patek Philippe Calatrava',
+    brand: 'Patek Philippe',
+    category: 'Haute Horlogerie',
+    model: 'Calatrava',
+    description: 'The essence of the round wristwatch, featuring elegant simplicity and timeless design.',
+    price: 1950000,
+    images: [
+      'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800',
+    ],
+    specifications: {
+      caseMaterial: '18K white gold',
+      movement: 'Calibre 215 PS, manual-winding',
+      waterResistance: '30 metres',
+      diameter: '39 mm',
+    },
+    stock: [
+      { storeId: 'store-mumbai-01', storeName: 'Mumbai - Bandra', quantity: 1, reserved: 0 },
+      { storeId: 'store-delhi-01', storeName: 'Delhi - Connaught Place', quantity: 0, reserved: 0, distance: 1400 },
+      { storeId: 'store-bangalore-01', storeName: 'Bangalore - Indiranagar', quantity: 1, reserved: 0, distance: 980 },
+    ],
+    velocity: 'slow',
+  },
+];
+
+export const mockTemplates: MessageTemplate[] = [
+  {
+    id: 'temp-001',
+    name: 'Birthday Wishes',
+    category: 'occasion',
+    channel: 'whatsapp',
+    body: 'Dear {CustomerName}, Wishing you a wonderful birthday! 🎉 As a token of our appreciation, we have curated a special selection of timepieces that we think you will love. Visit us at {StoreName} or reply to schedule a private viewing. Best wishes, {AdvisorName}',
+    variables: ['CustomerName', 'StoreName', 'AdvisorName'],
+  },
+  {
+    id: 'temp-002',
+    name: 'Anniversary Greetings',
+    category: 'occasion',
+    channel: 'whatsapp',
+    body: 'Happy Anniversary {CustomerName}! May your bond grow stronger with each passing moment. To celebrate this special day, we invite you to explore our exclusive collection of timeless watches. Visit {StoreName} or let me know if you would like a private appointment. - {AdvisorName}',
+    variables: ['CustomerName', 'StoreName', 'AdvisorName'],
+  },
+  {
+    id: 'temp-003',
+    name: 'Post-Visit Follow-up',
+    category: 'followup',
+    channel: 'email',
+    subject: 'Thank you for visiting Ethos',
+    body: 'Dear {CustomerName},\n\nThank you for visiting us at {StoreName}. It was a pleasure showing you {ProductName}.\n\nIf you have any questions or would like to proceed with the purchase, please do not hesitate to reach out. I am here to assist you.\n\nBest regards,\n{AdvisorName}\n{Phone}',
+    variables: ['CustomerName', 'StoreName', 'ProductName', 'AdvisorName', 'Phone'],
+  },
+  {
+    id: 'temp-004',
+    name: 'Back in Stock',
+    category: 'followup',
+    channel: 'sms',
+    body: 'Hi {CustomerName}, Great news! The {ProductName} you were interested in is now back in stock at {StoreName}. Visit us or reply to reserve it. - {AdvisorName}',
+    variables: ['CustomerName', 'ProductName', 'StoreName', 'AdvisorName'],
+  },
+  {
+    id: 'temp-005',
+    name: 'Quote Reminder',
+    category: 'followup',
+    channel: 'whatsapp',
+    body: 'Hello {CustomerName}, I hope this message finds you well. I wanted to follow up on the quote for {ProductName} that I sent you. The offer is valid until {ExpiryDate}. Let me know if you have any questions or if you would like to proceed. - {AdvisorName}',
+    variables: ['CustomerName', 'ProductName', 'ExpiryDate', 'AdvisorName'],
+  },
+  {
+    id: 'temp-006',
+    name: 'Watch Care Guide',
+    category: 'education',
+    channel: 'email',
+    subject: 'Care Guide for Your Timepiece',
+    body: 'Dear {CustomerName},\n\nThank you for your recent purchase. To help you maintain your {ProductName} in pristine condition, here are some care tips:\n\n• Keep your watch away from magnetic fields\n• Service your watch every 3-5 years\n• Clean with a soft cloth regularly\n• Avoid extreme temperatures\n\nIf you have any questions, feel free to contact me.\n\nBest regards,\n{AdvisorName}',
+    variables: ['CustomerName', 'ProductName', 'AdvisorName'],
+  },
+  {
+    id: 'temp-007',
+    name: 'Event Invitation',
+    category: 'occasion',
+    channel: 'email',
+    subject: 'Exclusive Event Invitation - {EventName}',
+    body: 'Dear {CustomerName},\n\nYou are cordially invited to an exclusive event at {StoreName}.\n\nEvent: {EventName}\nDate: {EventDate}\nTime: {EventTime}\n\nJoin us for an evening of luxury as we unveil our latest collection. Light refreshments will be served.\n\nPlease RSVP by replying to this email.\n\nWe look forward to seeing you.\n\nBest regards,\n{AdvisorName}',
+    variables: ['CustomerName', 'StoreName', 'EventName', 'EventDate', 'EventTime', 'AdvisorName'],
+  },
+];
+
+export const mockTodos: TodoItem[] = [
+  {
+    id: 'todo-001',
+    type: 'birthday',
+    customerId: 'cust-002',
+    customerName: 'Priya Sharma',
+    description: 'Birthday today - Send wishes',
+    priority: 'high',
+    dueDate: new Date().toISOString(),
+    status: 'pending',
+    suggestedAction: 'Send Birthday Wishes template',
+  },
+  {
+    id: 'todo-002',
+    type: 'follow-up',
+    customerId: 'cust-004',
+    customerName: 'Ananya Desai',
+    description: 'Follow up on quote for Tissot PRX',
+    priority: 'medium',
+    dueDate: new Date(Date.now() + 86400000).toISOString(),
+    status: 'pending',
+    suggestedAction: 'Send Quote Reminder template',
+  },
+  {
+    id: 'todo-003',
+    type: 'reservation-expiring',
+    customerId: 'cust-001',
+    customerName: 'Arjun Mehta',
+    description: 'Reservation for Omega Speedmaster expires today',
+    priority: 'high',
+    dueDate: new Date().toISOString(),
+    status: 'pending',
+    suggestedAction: 'Call customer to confirm purchase',
+  },
+  {
+    id: 'todo-004',
+    type: 'anniversary',
+    customerId: 'cust-003',
+    customerName: 'Vikram Singh',
+    description: 'Anniversary in 3 days',
+    priority: 'medium',
+    dueDate: new Date(Date.now() + 259200000).toISOString(),
+    status: 'pending',
+    suggestedAction: 'Send Anniversary Greetings template',
+  },
+];
+
+export const mockReservations: Reservation[] = [
+  {
+    id: 'res-001',
+    advisorId: 'adv-001',
+    customerId: 'cust-001',
+    sku: 'OME-SPE-001',
+    productName: 'Omega Speedmaster Moonwatch',
+    quantity: 1,
+    expiresAt: new Date(Date.now() + 3600000).toISOString(), // Expires in 1 hour
+    status: 'active',
+    createdAt: new Date(Date.now() - 82800000).toISOString(), // Created 23 hours ago
+  },
+];
+
+export const mockQuotes: Quote[] = [
+  {
+    id: 'quote-001',
+    advisorId: 'adv-001',
+    customerId: 'cust-004',
+    items: [
+      {
+        sku: 'TIS-PRX-002',
+        productName: 'Tissot PRX Powermatic 80',
+        quantity: 1,
+        unitPrice: 98000,
+        total: 98000,
+      },
+    ],
+    subtotal: 98000,
+    tax: 17640, // 18% GST
+    discount: 0,
+    total: 115640,
+    paymentLink: 'https://pay.ethos.com/quote-001',
+    paymentStatus: 'pending',
+    expiresAt: new Date(Date.now() + 172800000).toISOString(), // Expires in 48 hours
+    createdAt: new Date(Date.now() - 86400000).toISOString(), // Created 24 hours ago
+  },
+];
