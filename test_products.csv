@@ -1,0 +1,7 @@
+sku,brand,model,category,description,price,cost,stock,velocity,status
+WATCH-001,Rolex,Submariner,Watches,Luxury dive watch with rotating bezel,12500,8000,5,fast,active
+WATCH-002,Omega,Speedmaster,Watches,Moonwatch professional chronograph,6500,4000,8,fast,active
+BAG-001,Hermès,Birkin,Handbags,Iconic handcrafted leather handbag,25000,15000,2,slow,active
+BAG-002,Chanel,Classic Flap,Handbags,Timeless quilted leather bag,8500,5000,6,medium,active
+SHOE-001,Christian Louboutin,Pigalle,Shoes,Signature red sole pumps,995,500,10,fast,active
+JEWELRY-001,Cartier,Love Bracelet,Jewelry,18k gold iconic bracelet,7200,4500,4,medium,active

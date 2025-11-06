@@ -58,6 +58,7 @@ app.listen(PORT, () => {
   console.log(`  POST   /api/products/attributes`);
   console.log(`  POST   /api/products/upload-images`);
   console.log(`  POST   /api/products/upload-videos`);
+  console.log(`  POST   /api/products/import-csv`);
   console.log(`  GET    /api/products/search?query=...`);
   console.log(`\n✅ Backend ready for connections!\n`);
 });
