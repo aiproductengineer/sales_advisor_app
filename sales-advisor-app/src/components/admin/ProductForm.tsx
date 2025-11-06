@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Save, Upload, X, Image as ImageIcon, Video as VideoIcon, Plus, Trash2 } from 'lucide-react';
+import { ArrowLeft, Save, Image as ImageIcon, Video as VideoIcon, Plus, Trash2 } from 'lucide-react';
 import { productAPI, ProductData, ProductAttribute } from '../../services/productApi';
 
 interface ProductFormProps {
