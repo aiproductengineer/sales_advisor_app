@@ -1,0 +1,36 @@
+{
+  "name": "sales_advisor_app",
+  "version": "1.0.0",
+  "description": "Sales Advisor App with Product CMS Backend",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiproductengineer/sales_advisor_app.git"
+  },
+  "keywords": [
+    "cms",
+    "product-management",
+    "sales-advisor"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aiproductengineer/sales_advisor_app/issues"
+  },
+  "homepage": "https://github.com/aiproductengineer/sales_advisor_app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "papaparse": "^5.5.3",
+    "sqlite3": "^5.1.7",
+    "uuid": "^13.0.0"
+  }
+}

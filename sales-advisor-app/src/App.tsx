@@ -8,6 +8,7 @@ import { Customers } from './pages/Customers';
 import { Products } from './pages/Products';
 import { Tasks } from './pages/Tasks';
 import { Communication } from './pages/Communication';
+import { ProductCMS } from './pages/admin/ProductCMS';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="products" element={<Products />} />
           <Route path="tasks" element={<Tasks />} />
           <Route path="communication" element={<Communication />} />
+          <Route path="admin/products" element={<ProductCMS />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

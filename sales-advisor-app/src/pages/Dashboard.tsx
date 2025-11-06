@@ -1,9 +1,11 @@
 import React from 'react';
-import { TrendingUp, Target, Award, Star, Users, CheckCircle2, Sparkles, Crown } from 'lucide-react';
+import { TrendingUp, Target, Award, Star, Users, CheckCircle2, Sparkles, Crown, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { formatCurrency } from '../utils/format';
 
 export const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
   const currentAdvisor = useStore((state) => state.currentAdvisor);
   const getPerformanceMetrics = useStore((state) => state.getPerformanceMetrics);
   const getPendingTodos = useStore((state) => state.getPendingTodos);
@@ -176,6 +178,26 @@ export const Dashboard: React.FC = () => {
           </p>
         </div>
       )}
+
+      {/* Admin CMS Access */}
+      <div
+        className="glass-card-hover p-6 relative overflow-hidden cursor-pointer"
+        onClick={() => navigate('/admin/products')}
+      >
+        <div className="absolute top-0 right-0 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="relative z-10 flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-400 mb-2">Product Management</p>
+            <p className="text-2xl font-bold text-purple-300">Admin CMS</p>
+            <p className="text-xs text-gray-500 mt-3">
+              Manage product catalog, images & videos
+            </p>
+          </div>
+          <div className="p-4 bg-purple-500/20 rounded-2xl">
+            <Settings className="w-10 h-10 text-purple-400" />
+          </div>
+        </div>
+      </div>
 
       {/* ECAL Conversion */}
       <div className="glass-card p-6 relative overflow-hidden">
